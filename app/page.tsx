@@ -36,7 +36,7 @@ export default function Page() {
   return <>
     <a href="#conteudo" className="skip">Pular para o conteúdo</a>
     <header className="wrap"><a href="#inicio" className="logo">mosaico<span>.</span></a><a href="#trilhas">Explorar trilhas</a></header>
-    <main id="conteudo">
+    <main id="conteudo" tabIndex={-1}>
       <section className="hero wrap" id="inicio">
         <div className="intro"><p className="eyebrow"><span aria-hidden="true"/> PROJETO CONCEITUAL · EDUCAÇÃO DIGITAL</p><h1>Aprenda por <em>peças.</em></h1><p className="lead">Um pedaço hoje. Outro amanhã. Quando você vê, já construiu algo que antes parecia difícil.</p><a href="#trilhas" className="button">Escolher minha trilha</a></div>
         <div className="hero-portrait"><img src={photos+'/hero.webp'} alt="Estudantes usando computadores em uma biblioteca" width="1200" height="900" fetchPriority="high"/><div className="portrait-caption"><span>ESTUDO EM PEQUENAS ETAPAS</span><span aria-hidden="true">✳</span></div></div>
