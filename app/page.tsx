@@ -24,6 +24,7 @@ function Mosaic() {
 export default function Page() {
   const [active,setActive]=useState(0);
   const [complete,setComplete]=useState<Record<string,number[]>>({});
+  const [tempo,setTempo]=useState(15);
   const track=tracks[active];
   const checks=complete[track.name] ?? [];
   function toggle(index:number) {
@@ -51,6 +52,11 @@ export default function Page() {
         </div>
       </section>
       <section className="system wrap"><div><p className="eyebrow">UM MÉTODO EM TRÊS ATOS</p><h2>Saia com algo que você fez.</h2><p>O roteiro de cada área segue a mesma sequência. O que muda é a peça final: um gráfico, um protótipo ou uma interface.</p><dl><div><dt>Entenda</dt><dd>Comece pelo objetivo e veja um exemplo em contexto.</dd></div><div><dt>Experimente</dt><dd>Faça uma tarefa curta e compare sua solução.</dd></div><div><dt>Mostre</dt><dd>Organize a entrega para outra pessoa conseguir entender.</dd></div></dl></div><Mosaic /></section>
+      <section className="planner" aria-labelledby="planner-title"><div className="wrap planner-grid"><div className="planner-copy"><p className="eyebrow">SEU TEMPO, SEU RITMO</p><h2 id="planner-title">Monte uma sessão.</h2><p>Escolha a duração e veja uma sugestão de como dividir o tempo. A sessão é apenas uma prévia e não cria uma matrícula.</p>
+        <div className="tempo" role="group" aria-label="Duração da sessão">{[15,30,45].map(minutes=><button key={minutes} type="button" aria-pressed={tempo===minutes} aria-controls="tempo-result" onClick={()=>setTempo(minutes)}>{minutes} min</button>)}</div>
+        <p id="tempo-result" aria-live="polite"><strong>{tempo} minutos:</strong> {tempo/3} min para entender, {tempo/3} min para experimentar e {tempo/3} min para registrar o resultado.</p></div>
+        <img width="1100" height="733" src={photos+'/editorial.webp'} alt="Estudantes colaborando com materiais de estudo em uma mesa" loading="lazy"/>
+      </div></section>
       <section className="deliverables"><div className="wrap"><p className="eyebrow">IDEIAS DE ENTREGAS</p><h2>Do exercício ao portfólio.</h2><div><article><strong>Dados</strong><p>Um mini-relatório com um gráfico e uma conclusão.</p></article><article><strong>Design</strong><p>Um protótipo navegável com pelo menos duas telas.</p></article><article><strong>Código</strong><p>Uma página responsiva com um estado interativo.</p></article></div></div></section>
     </main>
     <footer className="wrap"><b>mosaico.</b><p>Projeto conceitual de portfólio. Sem matrícula, cadastro ou coleta de dados.</p><a href="#inicio">Voltar ao início</a></footer>
