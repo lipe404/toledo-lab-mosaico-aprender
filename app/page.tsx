@@ -1,0 +1,54 @@
+'use client';
+
+import { useState } from 'react';
+
+const tracks = [
+  { name:'Dados', label:'LER O MUNDO', heading:'Transforme perguntas em gráficos.', info:'De uma tabela bruta a uma história que outra pessoa consegue entender.', units:['Organizar a fonte','Cruzar informações','Contar a história'], hue:'data' },
+  { name:'Design', label:'CRIAR COM INTENÇÃO', heading:'Faça uma ideia caber na tela.', info:'Da primeira conversa a um protótipo navegável, tomando decisões visíveis.', units:['Ouvir e mapear','Prototipar','Testar a navegação'], hue:'design' },
+  { name:'Código', label:'CONSTRUIR PARA A WEB', heading:'Dê vida a uma interface.', info:'Comece com a estrutura, estilize e implemente a primeira interação.', units:['Estruturar em HTML','Compor e adaptar','Implementar a interação'], hue:'code' },
+];
+
+function Mosaic() {
+  return <div className="mosaic" aria-hidden="true">
+    <div className="tile t1"><div><span/><span/><span/></div></div>
+    <div className="tile t2"><div>m<span>.</span></div></div>
+    <div className="tile t3"><div>✳</div></div>
+    <div className="tile t4"><div><span/><span/><span/></div></div>
+    <div className="tile t5"><div>+</div></div>
+    <div className="tile t6"><div><span/><span/><span/></div></div>
+  </div>;
+}
+
+export default function Page() {
+  const [active,setActive]=useState(0);
+  const [complete,setComplete]=useState<Record<string,number[]>>({});
+  const track=tracks[active];
+  const checks=complete[track.name] ?? [];
+  function toggle(index:number) {
+    setComplete(previous=>{
+      const current=previous[track.name]??[];
+      return {...previous,[track.name]:current.includes(index)?current.filter(item=>item!==index):[...current,index]};
+    });
+  }
+  return <>
+    <a href="#conteudo" className="skip">Pular para o conteúdo</a>
+    <header className="wrap"><a href="#inicio" className="logo">mosaico<span>.</span></a><a href="#trilhas">Explorar trilhas</a></header>
+    <main id="conteudo">
+      <section className="hero wrap" id="inicio">
+        <div className="intro"><p className="eyebrow"><span aria-hidden="true"/> PROJETO CONCEITUAL · EDUCAÇÃO DIGITAL</p><h1>Aprenda por <em>peças.</em></h1><p className="lead">Um pedaço hoje. Outro amanhã. Quando você vê, já construiu algo que antes parecia difícil.</p><a href="#trilhas" className="button">Escolher minha trilha</a></div>
+        <Mosaic />
+      </section>
+      <section id="trilhas" className="tracks">
+        <div className="wrap">
+          <div className="heading"><p className="eyebrow">IMAGINE SEU PERCURSO</p><h2>Três jeitos de começar.</h2><p>Escolha uma área e marque as etapas. É só uma prévia: o progresso vale nesta página.</p></div>
+          <div className="tabs" role="group" aria-label="Trilhas disponíveis">{tracks.map((item,index)=><button key={item.name} aria-pressed={active===index} aria-controls="trilha-atual" onClick={()=>setActive(index)}>{item.name}</button>)}</div>
+          <div className={`panel ${track.hue}`} id="trilha-atual" key={track.name}>
+            <div><p className="eyebrow">{track.label}</p><h3>{track.heading}</h3><p>{track.info}</p></div>
+            <div><p className="progress" aria-live="polite">{checks.length} de {track.units.length} etapas marcadas</p><progress max={track.units.length} value={checks.length} aria-label="Progresso demonstrativo" />{track.units.map((unit,index)=><label key={unit} className="check"><input type="checkbox" checked={checks.includes(index)} onChange={()=>toggle(index)} /><span>{unit}</span></label>)}</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer className="wrap"><b>mosaico.</b><p>Projeto conceitual de portfólio. Sem matrícula, cadastro ou coleta de dados.</p><a href="#inicio">Voltar ao início</a></footer>
+  </>;
+}
