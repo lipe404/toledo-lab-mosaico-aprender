@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+const photos = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 const tracks = [
   { name:'Dados', label:'LER O MUNDO', heading:'Transforme perguntas em gráficos.', info:'De uma tabela bruta a uma história que outra pessoa consegue entender.', units:['Organizar a fonte','Cruzar informações','Contar a história'], hue:'data' },
   { name:'Design', label:'CRIAR COM INTENÇÃO', heading:'Faça uma ideia caber na tela.', info:'Da primeira conversa a um protótipo navegável, tomando decisões visíveis.', units:['Ouvir e mapear','Prototipar','Testar a navegação'], hue:'design' },
@@ -36,7 +38,7 @@ export default function Page() {
     <main id="conteudo">
       <section className="hero wrap" id="inicio">
         <div className="intro"><p className="eyebrow"><span aria-hidden="true"/> PROJETO CONCEITUAL · EDUCAÇÃO DIGITAL</p><h1>Aprenda por <em>peças.</em></h1><p className="lead">Um pedaço hoje. Outro amanhã. Quando você vê, já construiu algo que antes parecia difícil.</p><a href="#trilhas" className="button">Escolher minha trilha</a></div>
-        <Mosaic />
+        <div className="hero-portrait"><img src={photos+'/hero.webp'} alt="Estudantes usando computadores em uma biblioteca" width="1200" height="900" fetchPriority="high"/><div className="portrait-caption"><span>ESTUDO EM PEQUENAS ETAPAS</span><span aria-hidden="true">✳</span></div></div>
       </section>
       <section id="trilhas" className="tracks">
         <div className="wrap">
@@ -48,6 +50,8 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section className="system wrap"><div><p className="eyebrow">UM MÉTODO EM TRÊS ATOS</p><h2>Saia com algo que você fez.</h2><p>O roteiro de cada área segue a mesma sequência. O que muda é a peça final: um gráfico, um protótipo ou uma interface.</p><dl><div><dt>Entenda</dt><dd>Comece pelo objetivo e veja um exemplo em contexto.</dd></div><div><dt>Experimente</dt><dd>Faça uma tarefa curta e compare sua solução.</dd></div><div><dt>Mostre</dt><dd>Organize a entrega para outra pessoa conseguir entender.</dd></div></dl></div><Mosaic /></section>
+      <section className="deliverables"><div className="wrap"><p className="eyebrow">IDEIAS DE ENTREGAS</p><h2>Do exercício ao portfólio.</h2><div><article><strong>Dados</strong><p>Um mini-relatório com um gráfico e uma conclusão.</p></article><article><strong>Design</strong><p>Um protótipo navegável com pelo menos duas telas.</p></article><article><strong>Código</strong><p>Uma página responsiva com um estado interativo.</p></article></div></div></section>
     </main>
     <footer className="wrap"><b>mosaico.</b><p>Projeto conceitual de portfólio. Sem matrícula, cadastro ou coleta de dados.</p><a href="#inicio">Voltar ao início</a></footer>
   </>;
