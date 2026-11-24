@@ -47,7 +47,7 @@ export default function Page() {
   }
   return <>
     <a href="#conteudo" className="skip">Pular para o conteúdo</a>
-    <header className="wrap"><a href="#inicio" className="logo">mosaico<span>.</span></a><a href="#trilhas">Explorar trilhas</a></header>
+    <header className="wrap"><a href="#inicio" className="logo brand-masthead"><img className="brand-image" src={(process.env.NEXT_PUBLIC_BASE_PATH ?? "") + "/brand-lockup.webp"} alt="Mosaico Aprender" width="640" height="160" decoding="async" /></a><a href="#trilhas">Explorar trilhas</a></header>
     <main id="conteudo" tabIndex={-1}>
       <section className="hero wrap" id="inicio">
         <div className="intro"><p className="eyebrow"><span aria-hidden="true"/> PROJETO CONCEITUAL · EDUCAÇÃO DIGITAL</p><h1>Aprenda por <em>peças.</em></h1><p className="lead">Em 15 minutos, você já tem um roteiro para começar em dados, design ou código. Escolha uma trilha e leve um plano de estudo que cabe no seu dia.</p><a href="#trilhas" className="button">Escolher minha trilha</a></div>
@@ -72,6 +72,6 @@ export default function Page() {
       </div></section>
       <section className="deliverables"><div className="wrap"><p className="eyebrow">IDEIAS DE ENTREGAS</p><h2>Do exercício ao portfólio.</h2><div><article><strong>Dados</strong><p>Um mini-relatório com um gráfico e uma conclusão.</p></article><article><strong>Design</strong><p>Um protótipo navegável com pelo menos duas telas.</p></article><article><strong>Código</strong><p>Uma página responsiva com um estado interativo.</p></article></div></div></section>
     </main>
-    <footer className="wrap"><b>mosaico.</b><p>Projeto conceitual de portfólio. Sem matrícula, cadastro ou coleta de dados.</p><a href="#inicio">Voltar ao início</a></footer>
+    <footer className="wrap"><img className="brand-image brand-footer" src={(process.env.NEXT_PUBLIC_BASE_PATH ?? "") + "/brand-lockup.webp"} alt="Mosaico Aprender" width="640" height="160" decoding="async" /><p>Projeto conceitual de portfólio. Sem matrícula, cadastro ou coleta de dados.</p><a href="#inicio">Voltar ao início</a></footer>
   </>;
 }
